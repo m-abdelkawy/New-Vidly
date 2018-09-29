@@ -1,0 +1,12 @@
+﻿@using VidlyExerciseOne.ViewModels
+@model CustomersViewModel
+
+
+
+<table>
+    @for (int i = 0; i < Model.CustomersList.Count; i++)
+    {
+        <tr>@Html.ActionLink($"{Model.CustomersList[i].Name}", "Details", new { id = i })</tr><br/>
+    }
+</table>
+

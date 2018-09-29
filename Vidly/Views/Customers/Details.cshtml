@@ -1,0 +1,28 @@
+﻿@using Vidly.ViewModels
+@model CustomerViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+@if (Model.MoviesList.Count == 0)
+{
+    <text>No Movies rented so far</text>
+}
+else
+{
+    <table>
+        <tbody>
+            <tr>
+                @foreach (var item in Model.MoviesList)
+                {
+                    Html.ActionLink("")
+                }
+            </tr>
+        </tbody>
+    </table>
+}
+
+

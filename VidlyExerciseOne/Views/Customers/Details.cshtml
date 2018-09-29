@@ -1,0 +1,24 @@
+﻿@using VidlyExerciseOne.ViewModels
+@model CustomersViewModel
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model.CustomersList.Count == 0)
+{
+    <h3>No customers</h3>
+}
+else
+{
+    if (ViewBag.Id != null)
+    {
+        @Html.Partial("PartialOneCustomer");
+    }
+    else
+    {
+        @Html.Partial("PartialAllCustomers");
+    }
+}
