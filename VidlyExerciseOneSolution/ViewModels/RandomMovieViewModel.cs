@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using VidlyExerciseOne.Models;
+using VidlyExerciseOneSolution.Models;
 
-namespace VidlyExerciseOne.ViewModels
+namespace VidlyExerciseOneSolution.ViewModels
 {
-    public class MoviesViewModel
+    public class RandomMovieViewModel
     {
-        //public List<Movie> MoviesList { get; set; }
         public Movie Movie { get; set; }
         public List<Customer> Customers { get; set; }
     }
