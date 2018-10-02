@@ -11,5 +11,6 @@ namespace VidlyExerciseOne.ViewModels
         //public List<Movie> MoviesList { get; set; }
         public Movie Movie { get; set; }
         public List<Customer> Customers { get; set; }
+        public List<Movie> MoviesList { get; internal set; }
     }
 }
