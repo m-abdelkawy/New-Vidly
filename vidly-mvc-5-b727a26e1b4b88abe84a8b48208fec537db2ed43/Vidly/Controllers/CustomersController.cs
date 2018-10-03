@@ -22,11 +22,34 @@ namespace Vidly.Controllers
         public ActionResult New()
         {
             IEnumerable<MembershipType> membershipTypes = _ctx.MembershipTypes;
-            NewCustomerViewModel customerViewModel = new NewCustomerViewModel()
+            CustomerFormViewModel customerViewModel = new CustomerFormViewModel()
             {
                 MembershipTypes = membershipTypes
             };
-            return View(customerViewModel);
+            return View("CustomerForm", customerViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {//Model Binding: Binding customerViewModelor Customer data from request
+            if(customer.Id == 0)
+                _ctx.Customers.Add(customer);
+            else
+            {
+                Customer customerInDB = _ctx.Customers.Single(c => c.Id == customer.Id);
+
+                //1st update method -- updates the model properties based on the key-value pairs in the request data
+                //it updates all properties -- this method opens security holes in the application
+                //a malicious software could add new key-value pairs to the request data
+                /*TryUpdateModel(customerInDB);*/
+                //2nd update method -- manually updating properties
+                customerInDB.Name = customer.Name;
+                customerInDB.BirthDate = customer.BirthDate;
+                customerInDB.MembershipTypeId = customer.MembershipTypeId;
+                customerInDB.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+            _ctx.SaveChanges();
+            return RedirectToAction("Index", "Customers");
         }
         public ViewResult Index()
         {
@@ -35,6 +58,19 @@ namespace Vidly.Controllers
             //Deferred execution - .ToList = Immediate execution
 
             return View(customers);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Customer customer = _ctx.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return HttpNotFound();
+            CustomerFormViewModel customerViewModel = new CustomerFormViewModel()
+            {
+                Customer = customer,
+                MembershipTypes = _ctx.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", customerViewModel);
         }
 
         public ActionResult Details(int id)

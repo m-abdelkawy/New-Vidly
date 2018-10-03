@@ -186,6 +186,14 @@
     <Compile Include="Migrations\201810021349333_MoviesTableAdded.Designer.cs">
       <DependentUpon>201810021349333_MoviesTableAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810031932276_MoviesDatesModified.cs" />
+    <Compile Include="Migrations\201810031932276_MoviesDatesModified.Designer.cs">
+      <DependentUpon>201810031932276_MoviesDatesModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810031949426_MoviesDatesModified1.cs" />
+    <Compile Include="Migrations\201810031949426_MoviesDatesModified1.Designer.cs">
+      <DependentUpon>201810031949426_MoviesDatesModified1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -196,7 +204,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\NewCustomerViewModel.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +269,10 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <None Include="Views\Customers\Details.cshtml" />
     <None Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Customers\New.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
     <None Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\MovieDetails.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,6 +293,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810021349333_MoviesTableAdded.resx">
       <DependentUpon>201810021349333_MoviesTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810031932276_MoviesDatesModified.resx">
+      <DependentUpon>201810031932276_MoviesDatesModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810031949426_MoviesDatesModified1.resx">
+      <DependentUpon>201810031949426_MoviesDatesModified1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
