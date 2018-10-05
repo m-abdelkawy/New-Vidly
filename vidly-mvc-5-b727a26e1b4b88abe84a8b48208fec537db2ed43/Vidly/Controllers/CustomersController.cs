@@ -24,6 +24,7 @@ namespace Vidly.Controllers
             IEnumerable<MembershipType> membershipTypes = _ctx.MembershipTypes;
             CustomerFormViewModel customerViewModel = new CustomerFormViewModel()
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
             return View("CustomerForm", customerViewModel);
