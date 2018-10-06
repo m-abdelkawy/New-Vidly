@@ -31,6 +31,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {//Model Binding: Binding customerViewModelor Customer data from request
 

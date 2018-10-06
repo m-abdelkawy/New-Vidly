@@ -65,14 +65,26 @@ namespace Vidly.Controllers
             IEnumerable<Genre> genres = _ctx.Genres;
             MovieFormViewModel movieViewModel = new MovieFormViewModel()
             {
+                //Movie = new Movie(), //to solve the Id problem in the validation we need to instantiate Movie
+
+
                 Genres = genres
             };
             return View("MovieForm", movieViewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                MovieFormViewModel movieFormViewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _ctx.Genres.ToList()
+                };
+                return View("MovieForm", movieFormViewModel);
+            }
             if (movie.Id == 0)
                 _ctx.Movies.Add(movie);
             else
@@ -104,9 +116,8 @@ namespace Vidly.Controllers
             {
                 return HttpNotFound();
             }
-            MovieFormViewModel movieViewModel = new MovieFormViewModel()
+            MovieFormViewModel movieViewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _ctx.Genres.ToList()
             };
             return View("MovieForm", movieViewModel);
