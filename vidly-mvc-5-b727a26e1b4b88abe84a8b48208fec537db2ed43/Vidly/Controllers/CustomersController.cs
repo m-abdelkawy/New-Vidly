@@ -67,10 +67,10 @@ namespace Vidly.Controllers
         public ViewResult Index()
         {
             //var customers = GetCustomers();
-            IEnumerable<Customer> customers = _ctx.Customers.Include(c => c.MembershipType).ToList(); 
+            //IEnumerable<Customer> customers = _ctx.Customers.Include(c => c.MembershipType).ToList(); 
             //Deferred execution - .ToList = Immediate execution
 
-            return View(customers);
+            return View(/*customers*/);
         }
 
         public ActionResult Edit(int id)

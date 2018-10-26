@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.ServiceModel.Web;
 using System.Web.Http;
 using Vidly.DTOs;
 using Vidly.Models;
+using System.Data.Entity;
 
 namespace Vidly.Controllers.API
 {
@@ -20,7 +22,7 @@ namespace Vidly.Controllers.API
         //GET /api/customers
         public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _ctx.Customers.Select(AutoMapper.Mapper.Map<Customer, CustomerDto>);
+            return _ctx.Customers.Include(c => c.MembershipType).Select(AutoMapper.Mapper.Map<Customer, CustomerDto>);
         }
 
         //GET /api/customers/1

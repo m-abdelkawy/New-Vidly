@@ -20,9 +20,17 @@ namespace Vidly.Controllers
         {
             //var movies = GetMovies();
             //Deferred Execution
-            IEnumerable<Movie> movies = _ctx.Movies.Include(m => m.Genre).ToList();
+            //IEnumerable<Movie> movies = _ctx.Movies.Include(m => m.Genre).ToList();
+            //return View(movies);
 
-            return View(movies);    
+            if (User.IsInRole(RoleNames.CanManageMovies))
+            {
+                return View("Index");
+            }
+            else
+            {
+                return View("ReadOnlyIndex");
+            }
         }
 
         //private IEnumerable<Movie> GetMovies()
@@ -60,6 +68,7 @@ namespace Vidly.Controllers
             return View(movie);
         }
 
+        [Authorize(Roles =(RoleNames.CanManageMovies))]
         public ActionResult New()
         {
             IEnumerable<Genre> genres = _ctx.Genres;
